@@ -29,7 +29,7 @@ def main():
         print(f"总运行距离: {total_distance:.2f} 米")
 
         # 4. 计算累积距离（使用 scipy.integrate.cumulative_trapezoid）
-        distance = cumulative_trapezoid(v, t, initial=0)
+         calculated_cumulative = cumulative_trapezoid(v, t, initial=0)
 
         # 5. 绘制图表
         plt.figure(figsize=(10, 6))
