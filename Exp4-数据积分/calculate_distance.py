@@ -3,22 +3,33 @@ from scipy.integrate import cumulative_trapezoid
 import matplotlib.pyplot as plt
 import os
 
+
 def main():
     try:
-        # 1. 获取数据文件路径（TODO：使用相对路径）
-        data_file = None
-        
-        # 2. 读取数据（TODO：使用numpy.loadtxt）
-        data = None
-        t = None  # 时间列
-        v = None  # 速度列
+        # 1. 获取数据文件路径（使用相对路径）
+        data_file = 'data.txt'
 
-        # 3. 计算总距离（TODO：使用numpy.trapz）
-        total_distance = None
+        # 2. 读取数据（使用numpy.loadtxt）
+        data = np.loadtxt(data_file)
+
+        if data.size == 0:
+            print("错误：数据文件为空，请检查文件内容。")
+            return
+
+        if data.ndim == 1:
+            # 如果是一维数组，假设数据是交替存储时间和速度
+            t = data[::2]
+            v = data[1::2]
+        else:
+            t = data[:, 0]  # 时间列
+            v = data[:, 1]  # 速度列
+
+        # 3. 计算总距离（使用numpy.trapezoid）
+        total_distance = np.trapezoid(v, t)
         print(f"总运行距离: {total_distance:.2f} 米")
 
-        # 4. 计算累积距离（TODO：使用cumulative_trapezoid）
-        distance = None
+        # 4. 计算累积距离（使用cumulative_trapezoid）
+        distance = cumulative_trapezoid(v, t, initial=0)
 
         # 5. 绘制图表
         plt.figure(figsize=(10, 6))
@@ -34,6 +45,7 @@ def main():
     except FileNotFoundError:
         print("错误：找不到数据文件")
         print("请确保数据文件存在于正确路径")
+
 
 if __name__ == '__main__':
     main()
