@@ -47,7 +47,7 @@ def simpson(f, a, b, N):
     """
     # 检查N是否为偶数
     if N % 2 != 0:
-        raise ValueError("Simpson法要求N必须是偶数")
+        raise ValueError("Simpson 法则要求 N 必须为偶数")
 
     # 计算区间宽度
     h = (b - a) / N
