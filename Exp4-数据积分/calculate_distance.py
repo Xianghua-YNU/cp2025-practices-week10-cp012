@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.integrate import cumulative_trapezoid
+from scipy.integrate import trapezoid, cumulative_trapezoid
 import matplotlib.pyplot as plt
 import os
 
@@ -7,9 +7,9 @@ import os
 def main():
     try:
         # 1. 获取数据文件路径（使用相对路径）
-        data_file = 'Velocities.txt'
+        data_file = 'data.txt'
 
-        # 2. 读取数据（使用numpy.loadtxt）
+        # 2. 读取数据（使用 numpy.loadtxt）
         data = np.loadtxt(data_file)
 
         if data.size == 0:
@@ -24,11 +24,11 @@ def main():
             t = data[:, 0]  # 时间列
             v = data[:, 1]  # 速度列
 
-        # 3. 计算总距离（使用numpy.trapezoid）
-        calculated_total = np.trapezoid(v, t)
-        print(f"总运行距离: {calculated_total:.2f} 米")
+        # 3. 计算总距离（使用 scipy.integrate.trapezoid）
+        total_distance = trapezoid(v, t)
+        print(f"总运行距离: {total_distance:.2f} 米")
 
-        # 4. 计算累积距离（使用cumulative_trapezoid）
+        # 4. 计算累积距离（使用 scipy.integrate.cumulative_trapezoid）
         distance = cumulative_trapezoid(v, t, initial=0)
 
         # 5. 绘制图表
@@ -49,3 +49,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
