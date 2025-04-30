@@ -35,10 +35,7 @@ def plot_rate(filename="rate_vs_temp.png"):
     plt.ylabel('Reaction Rate Factor (erg·cm$^6$·g$^{-3}$·s$^{-1}$)', fontsize=12)
     plt.title('3-alpha Reaction Rate vs Temperature', fontsize=14)
     plt.grid(True, which="both", ls="--")
-    
-    # 保存图形
-    plt.savefig(filename, dpi=300, bbox_inches='tight')
-    plt.close()
+    plt.show()
 
 if __name__ == "__main__":
     # 计算并打印 nu 值
@@ -62,7 +59,7 @@ if __name__ == "__main__":
             dq_dT = (q_perturbed - q) / (T * h)
             nu = (T * dq_dT) / q
         
-        print(f"{T:12.1e} : {nu:15.4f}")
+        print(f"{T:10.3e} : {nu:8.3f}")
 
     # 调用绘图函数展示结果
     plot_rate()
