@@ -11,7 +11,7 @@ def q3a(T):
     T8 = T / 1e8
     
     # 处理温度为零或接近零的特殊情况
-    if T8 == 0:
+    if T8<= 0:
         return 0.0
     
     # 计算速率因子
@@ -21,7 +21,7 @@ def q3a(T):
 def plot_rate(filename="rate_vs_temp.png"):
     """绘制速率因子随温度变化的 log-log 图"""
     # 生成温度数据点 (从 1e7 K 到 1e10 K)
-    temperatures = np.logspace(7, 10, 100)
+    temperatures = np.logspace(np.log10(3.0e8), np.log10(5.0e9), 100)
     
     # 计算对应的速率值
     rates = [q3a(T) for T in temperatures]
