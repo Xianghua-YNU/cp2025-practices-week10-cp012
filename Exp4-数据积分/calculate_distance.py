@@ -12,7 +12,7 @@ def calculate_distance(data=None):
     """
     if data is None:
         try:
-            data_file = 'data.txt'
+            data_file = 'Velocities.txt'
             data = np.loadtxt(data_file)
             if data.size == 0:
                 print("错误：数据文件为空，请检查文件内容。")
