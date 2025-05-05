@@ -14,7 +14,7 @@ def main():
         v = data[:, 1]  # 速度列
 
         # 2. 计算总距离
-        total_distance = np.trapz(v, t)
+        total_distance = np.trapezoid(v, t)
         print(f"总运行距离: {total_distance:.2f} 米")
 
         # 3. 计算累积距离
