@@ -6,7 +6,7 @@ import os
 def main():
     try:
         # 1. 获取数据文件路径（使用绝对路径）
-        data_file = r"data.txt"
+        data_file = r"Velocities.txt"
 
         # 2. 读取数据
         data = np.loadtxt(data_file)
